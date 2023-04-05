@@ -1,0 +1,136 @@
+{% extends 'base.html' %} {% block body %}
+  <h2>Please fill out our form about sports!</h2>
+  <hr />
+  <main>
+    <form action="/add" method="POST">
+      <div class="mb-3">
+        <label class="form-label" for="first-name">First name:</label>
+        <input
+          class="form-control"
+          type="text"
+          id="first-name"
+          name="fname"
+          autofocus="autofocus"
+          required
+        />
+      </div>
+  
+      <fieldset>
+        <legend>Favorite Sport to Watch:</legend>
+        <select class="mb-3 form-select" name="flavor" id="ice-cream" required>
+          <option value="" selected>Choose one ...</option>
+          <option value="Football">Football</option>
+          <option value="Soccer">Soccer</option>
+          <option value="Basketball">Basketball</option>
+        </select>
+      </fieldset>
+  
+  
+      <fieldset>
+        <legend>Do you watch on streaming services?</legend>
+        <div class="mb-3 form-check form-check-inline">
+          <label class="form-check-label" for="read-yes">
+          <input
+            type="radio"
+            id="read-yes"
+            name="read"
+            value="yes"
+            required="required"
+          />
+          Yes
+          </div>
+  
+        <div class="mb-3 form-check form-check-inline">
+          <label class="form-check-label" for="read-no">
+          <input
+            type="radio"
+            id="read-no"
+            name="read"
+            value="no"
+            required="required"
+          />
+          No
+        </label>
+        </div>  
+      
+  
+      <fieldset>
+        <legend>Choose your favorite streaming service:</legend>
+              <div class="form-check">
+          <label class="form-check-label" for="for-running">
+          <input
+            type="checkbox"
+            class="form-check-input"
+            id="for-running"
+            name="activities"
+            value="ESPN"
+          />
+          ESPN
+        </label>
+        </div>  
+  
+              <div class="form-check">
+          <label class="form-check-label" for="for-biking">
+          <input
+            type="checkbox"
+            class="form-check-input"
+            id="for-biking"
+            name="activities"
+            value="FOX"
+          />
+          FOX
+        </label>
+        </div>
+  
+              <div class="form-check">
+          <label class="form-check-label" for="for-reading">
+          <input
+            type="checkbox"
+            class="form-check-input"
+            id="for-reading"
+            name="activities"
+            value="CBS"
+          />
+          CBS
+        </label>
+        </div>
+      </fieldset>
+  
+     <div class="mt-3">
+        <input
+          class="btn btn-primary"
+          type="submit"
+          value="Submit"
+          id="submit"
+        />
+      </div>
+  
+    </form>
+  
+   
+    {% if friends %}
+    <h2  class="mt-5">Friend List</h2>
+    <hr />
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Favorite Sport to Watch</th>
+          <th>Do you stream?</th>
+          <th>Favorite streaming platform</th>
+        </tr>
+      </thead>
+  
+      <tbody>
+        {% for friend in friends %}
+        <tr>
+          <td>{{ friend.name }}</td>
+          <td>{{ friend.flavor }}</td>
+          <td>{{ friend.read }}</td>
+          <td>{{ friend.activities }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {% endif %}
+{% endblock %}
